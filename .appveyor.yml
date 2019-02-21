@@ -31,7 +31,7 @@ install:
 
   # update path to use installed pip
   - set PATH=%PYTHON%\\scripts;%PATH%
-  - %PYTHON%\python -m pip install --upgrade pip
+  - "%PYTHON%\python -m pip install --upgrade pip"
 
   # Install torch with pip
   - pip install "https://download.pytorch.org/whl/cpu/torch-1.0.1-%PY_TAG%-%PY_TAG%m-win_amd64.whl"
