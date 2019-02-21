@@ -33,7 +33,7 @@ install:
   - set PATH=%PYTHON%\\scripts;%PATH%
 
   # Install torch with pip
-  - pip install "https://download.pytorch.org/whl/cpu/torch-1.0.1-cp%PY_TAG%-cp%PY_TAG%m-win_amd64.whl"
+  - pip install "https://download.pytorch.org/whl/cpu/torch-1.0.1-%PY_TAG%-%PY_TAG%m-win_amd64.whl"
   - pip install torchvision
 
   # Now install spiceypy
