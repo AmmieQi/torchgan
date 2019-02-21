@@ -43,8 +43,7 @@ install:
   - "%PYTHON%/python setup.py install"
 
   - ECHO "Installed TorchGAN!"
-  - "%PYTHON%/Scripts/pytest --version"
 
 test_script:
-  - "%PYTHON%/Scripts/pytest tests/torchgan/"
+  - "%PYTHON%/python setup.py test"
 
