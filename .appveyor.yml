@@ -31,6 +31,7 @@ install:
 
   # update path to use installed pip
   - set PATH=%PYTHON%\\scripts;%PATH%
+  - %PYTHON%\python -m pip install --upgrade pip
 
   # Install torch with pip
   - pip install "https://download.pytorch.org/whl/cpu/torch-1.0.1-%PY_TAG%-%PY_TAG%m-win_amd64.whl"
@@ -42,8 +43,8 @@ install:
   - "%PYTHON%/python setup.py install"
 
   - ECHO "Installed TorchGAN!"
-  - "%PYTHON%/Scripts/py.test --version"
+  - "%PYTHON%/Scripts/pytest --version"
 
 test_script:
-  - "%PYTHON%/Scripts/py.test tests/torchgan/"
+  - "%PYTHON%/Scripts/pytest tests/torchgan/"
 
