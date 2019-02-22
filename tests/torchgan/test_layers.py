@@ -30,10 +30,7 @@ class TestLayers(unittest.TestCase):
 
         self.match_layer_outputs(layer, input, (16, 1, 10, 10))
 
-        layer = ResidualBlock2d(
-            [3, 16, 3],
-            [1, 1],
-        )
+        layer = ResidualBlock2d([3, 16, 3], [1, 1])
 
         self.match_layer_outputs(layer, input, (16, 3, 10, 10))
 
@@ -53,10 +50,7 @@ class TestLayers(unittest.TestCase):
 
         self.match_layer_outputs(layer, input, (16, 1, 10, 10))
 
-        layer = ResidualBlockTranspose2d(
-            [3, 16, 3],
-            [1, 1],
-        )
+        layer = ResidualBlockTranspose2d([3, 16, 3], [1, 1])
 
         self.match_layer_outputs(layer, input, (16, 3, 10, 10))
 
@@ -67,10 +61,18 @@ class TestLayers(unittest.TestCase):
 
         self.match_layer_outputs(layer, input, (16, 16, 10, 10))
 
+        layer = BasicBlock2d(3, 13, 3, 1, 1, batchnorm=False)
+
+        self.match_layer_outputs(layer, input, (16, 16, 10, 10))
+
     def test_bottleneck_block2d(self):
         input = torch.rand(16, 3, 10, 10)
 
         layer = BottleneckBlock2d(3, 13, 3, 1, 1)
+
+        self.match_layer_outputs(layer, input, (16, 16, 10, 10))
+
+        layer = BottleneckBlock2d(3, 13, 3, 1, 1, batchnorm=False)
 
         self.match_layer_outputs(layer, input, (16, 16, 10, 10))
 
@@ -81,10 +83,18 @@ class TestLayers(unittest.TestCase):
 
         self.match_layer_outputs(layer, input, (16, 16, 10, 10))
 
+        layer = TransitionBlock2d(3, 16, 3, 1, 1, batchnorm=False)
+
+        self.match_layer_outputs(layer, input, (16, 16, 10, 10))
+
     def test_transition_block_transpose2d(self):
         input = torch.rand(16, 3, 10, 10)
 
         layer = TransitionBlockTranspose2d(3, 16, 3, 1, 1)
+
+        self.match_layer_outputs(layer, input, (16, 16, 10, 10))
+
+        layer = TransitionBlockTranspose2d(3, 16, 3, 1, 1, batchnorm=False)
 
         self.match_layer_outputs(layer, input, (16, 16, 10, 10))
 
@@ -94,4 +104,3 @@ class TestLayers(unittest.TestCase):
         layer = DenseBlock2d(5, 3, 16, BottleneckBlock2d, 3, padding=1)
 
         self.match_layer_outputs(layer, input, (16, 83, 10, 10))
-
