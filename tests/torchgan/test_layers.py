@@ -104,3 +104,19 @@ class TestLayers(unittest.TestCase):
         layer = DenseBlock2d(5, 3, 16, BottleneckBlock2d, 3, padding=1)
 
         self.match_layer_outputs(layer, input, (16, 83, 10, 10))
+    
+    def test_self_attention2d(self):
+        input = torch.rand(16, 88, 10, 10)
+
+        layer = SelfAttention2d(88)
+
+        self.match_layer_outputs(layer, input, (16, 88, 10, 10))
+
+    def test_spectral_norm2d(self):
+        input = torch.rand(16, 3, 10, 10)
+
+        layer = SpectralNorm2d(
+            torch.nn.Conv2d(3, 10, 3, padding=1),
+            power_iterations=10)
+
+        self.match_layer_outputs(layer, input, (16, 10, 10, 10))
